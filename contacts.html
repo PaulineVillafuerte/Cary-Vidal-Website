@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CaryVidalVisuals | Contacts</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@200&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <title>Responsive Footer</title>
+</head>
+
+
+<body>
+  <nav>
+        <a href="#">About</a>
+        <a href="#">My Works</a>
+        <img src="images1/logo_img.png" alt="Website Logo">
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+      </nav>
+
+  <main>
+  <div class="section_container">
+    <section class="left_section">
+      <p id="contacts_desc">Let's capture something <br> <span style="font-weight: bold;">great together.</span></p>
+      <p id="contacts_sub_desc">Feel free to contact us anytime. We will get back to you as soon as we can!</p>
+      <div id="contact_message_form">
+        <form method="post" onsubmit="SendEmail; reset(); return false;">
+          <div class="inputGroup">
+            <label for="name" style="visibility: hidden;">Name</label>
+            <input type="text" id="name" placeholder="Name" required="required" autocomplete="off">
+          </div>
+
+          <div class="inputGroup">
+            <label for="email" style="visibility: hidden;">Email</label>
+            <input type="email" id="email" placeholder="Email" required="required" autocomplete="off">
+          </div>
+
+          <div class="inputGroup">
+            <textarea id="message" placeholder="Message"></textarea>
+          </div>
+        </form>
+        
+      </div>
+      <form >
+            <button type="submit" id="submit_btn">SEND</button>
+        </form>
+    </section>
+
+    <section class="contacts_container">
+      <h1>Let's get in touch!</h1>
+      <div class="contacts_box">
+        <img class="contacts_icon" src="images_contacts/phone_icon.png" alt="Phone Icon">
+        <p class="contact_details">0985-402-4985</p>
+      </div>
+
+      <div class="contacts_box">
+        <img class="contacts_icon" src="images_contacts/gmail_icon.png" alt="Gmail Icon">
+        <p class="contact_details">caryangelovidal540@gmail.com</p>
+      </div>
+
+      <div class="contacts_box">
+        <img class="contacts_icon" src="images_contacts/facebook_icon.png" alt="Facebook Icon">
+        <p class="contact_details">Cary Angelo Ermino Vidal</p>
+      </div>
+
+      <div class="contacts_box">
+        <img class="contacts_icon" src="images_contacts/facebook_icon.png" alt="Facebook Icon">
+        <p class="contact_details">Caryvidal Visuals</p>
+      </div>
+
+      <div class="contacts_box" style="margin-bottom: 30px;">
+        <img class="contacts_icon" src="images_contacts/instagram_icon.png" alt="Instagram Icon">
+        <p class="contact_details">@caryvidalvisuals</p>
+      </div>
+    </section>
+  </div>
+  </main>
+
+  <footer>
+
+    <div class="logo-container">
+      <img src="images1/logo_img.png" alt="Website Logo" class="footer_logo">
+      <div class="divider"></div>
+    </div>
+
+    <div class="section">
+      <h2>EXPLORE</h2>
+      <ul>
+        <li><a href="">About</a></li>
+        <li><a href="">My Works</a></li>
+        <li><a href="">Reviews</a></li>
+        <li><a href="">Frequently Asked <br> <span>Questions (FAQS)</span></a></li>
+      </ul>
+    </div>
+
+
+    <div class="section">
+      <h2>SERVICES</h2>
+      <ul>
+        <li><a href="#">Photoshoot</a></li>
+        <li><a href="">Small Events</a></li>
+        <li><a href="">Medium Events</a></li>
+        <li><a href="">Couple Shoot</a></li>
+        <li></li><a href="">Wedding</a></li>
+      </ul>
+    </div>
+   
+    <div class="section">
+      <h2>FOLLOW US</h2>
+      <a href="https://m.facebook.com/cvvisuals.ph"><img src="images_contacts/facebook_icon.png" alt="Facebook Logo"></a>
+      <a href="https://instagram.com/caryvidalvisuals?igshid=OGQ5ZDc2ODk2ZA=="><img src="images_contacts/instagram_icon.png" alt="Instagram Logo"></a>
+    </div>
+
+    <div class="section" style="width: 5%;"></div>
+
+    <div class="section_back-to-top">
+        <p>Back to top</p>
+        <img src="images_contacts/arrow up.png" alt="arrow pointing up">
+    </div>
+
+  </footer>
+
+</body>
+
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+
+  document.getElementById('submit_btn').addEventListener('click', function(event) {
+      event.preventDefault();
+      if (validateForm()) {
+        alert('Message submitted successfully!');
+      }
+    });
+
+    document.getElementById('name').addEventListener('input', function() {
+      updatePlaceholder('name');
+    });
+
+    document.getElementById('email').addEventListener('input', function() {
+      updatePlaceholder('email');
+    });
+
+    document.getElementById('message').addEventListener('input', function() {
+      updatePlaceholder('message');
+    });
+
+    function validateForm() {
+      var isValid = true;
+      var inputs = document.querySelectorAll('input[required], textarea[required]');
+      
+      inputs.forEach(function(input) {
+        if (!input.value.trim()) {
+          if (!input.hasAttribute('data-placeholder-added')) {
+            updatePlaceholder(input.id);
+            input.setAttribute('data-placeholder-added', 'true');
+          }
+          isValid = false;
+        } else {
+          input.removeAttribute('data-placeholder-added');
+        }
+      });
+
+      return isValid;
+    }
+
+    function updatePlaceholder(inputId) {
+      var inputElement = document.getElementById(inputId);
+      if (inputElement && !inputElement.value.trim()) {
+        inputElement.setAttribute('data-placeholder', inputElement.getAttribute('placeholder'));
+        inputElement.placeholder = 'Please enter ' + inputElement.getAttribute('placeholder').toLowerCase();
+      }
+    }
+
+
+    
+
+  
+  function SendEmail(){
+
+    var username = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var message = document.getElementById("message").value;
+
+    var customeremail = email;
+    var messageBody = "Name" + username + "br br" + message
+
+    Email.send({
+    Host : "smtp.elasticemail.com",
+    Username : "useremail349@gmail.com",
+    Password : "DE94F063D67BE63B0D0DAD342E37C2F4EB5F",
+    To : 'useremail349@gmail.com',
+    From : email,
+    Subject : "From CaryVidal Visuals page",
+    Body : messageBody
+    }).then(
+    message => alert("message")
+    );
+  }
+</script>
+
+</html>
